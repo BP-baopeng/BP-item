@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/font/iconfont.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>MusicPlayer</title>
+</head>
+<body>
+    <div class="wrapper">
+        <main class="main">
+            <img>
+            <audio></audio>
+        </main>
+        <div class="tool">
+            <!-- 播放控制 -->
+            <div class="btn">
+                <span class="btn-prev iconfont icon-play-prev-"></span>
+                <span class="btn-play iconfont icon-Play"></span>
+                <span class="btn-next iconfont icon-play-next-"></span>
+            </div>
+            <!-- 进度条 -->
+            <div class="progress">
+                <div class="current-time"></div>
+                <div class="pro-box">
+                    <span class="pro-bg"></span>
+                    <div class="pro-active">
+                        <div class="radio-box">
+                            <span class="radio"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="all-time"></div>
+            </div>
+            
+            <!-- 音量调节 -->
+            <div class="volume">
+                <span class="vol iconfont icon-shengyin"></span>
+                <div class="vol-box">
+                    <div class="vol-bg"></div>
+                    <div class="vol-active">
+                        <div class="sound-box">
+                            <span class="sound"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/musicList.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>

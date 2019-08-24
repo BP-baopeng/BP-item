@@ -21,6 +21,14 @@ span{
 .wrapper{
     padding-top: 70px;
     min-width: 800px;
+    /* text-align: center; */
+}
+.musicName{
+    text-align: center;
+    padding-bottom: 30px;
+    width: 300px;
+    margin: 0 auto;
+    color: #fff;
 }
 /* main */
 .main{
@@ -227,4 +235,28 @@ span{
     height: 10px;
     border-radius: 50%;
     background: #fff;
+}
+/* 媒体查询 */
+.iphone{
+    height: 100vh;
+    display: none;
+}
+@media screen and (max-width: 700px){
+    .iphone{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .wrapper{
+        display: none
+    }
+    .iphone>div{
+        padding: 50px;
+        height: 100px;
+        color: #fff;
+        font-size: 20px;
+    }
+    
 }

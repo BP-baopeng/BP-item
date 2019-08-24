@@ -13,15 +13,16 @@ var oAudio = document.getElementsByTagName("audio")[0],
     oVolbg = document.getElementsByClassName("vol-bg")[0],
     oSoundBox = document.getElementsByClassName("sound-box")[0],
     oVolActive = document.getElementsByClassName("vol-active")[0],
-    oImage = document.getElementsByTagName("img")[0];
-
+    oImage = document.getElementsByTagName("img")[0],
+    musicName = document.getElementsByClassName("musicName")[0];
 
 // 初始化
 var i = 0, W = oProbg.offsetWidth, H, timer, currentTime;
 var auto = true,
     flag = true;
-
 function init(){
+    let Name =  musicList[i].name.slice(8)
+    musicName.innerHTML = Name
     oAudio.src = musicList[i].name;
     oImage.src = musicList[i].IMG;
     oImage.style.borderColor = musicList[i].Color;

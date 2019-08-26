@@ -240,23 +240,19 @@ span{
 .iphone{
     height: 100vh;
     display: none;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    background-color: rgba(0, 0, 0, 0.5);
 }
-@media screen and (max-width: 700px){
-    .iphone{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: nowrap;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-    .wrapper{
-        display: none
-    }
-    .iphone>div{
-        padding: 50px;
-        height: 100px;
-        color: #fff;
-        font-size: 20px;
-    }
+/* .wrapper{
+    display: none
+} */
+.iphone>div{
+    padding: 50px;
+    height: 100px;
+    color: #fff;
+    font-size: 20px;
+}
     
-}

@@ -14,8 +14,9 @@ var oAudio = document.getElementsByTagName("audio")[0],
     oSoundBox = document.getElementsByClassName("sound-box")[0],
     oVolActive = document.getElementsByClassName("vol-active")[0],
     oImage = document.getElementsByTagName("img")[0],
-    musicName = document.getElementsByClassName("musicName")[0];
-
+    musicName = document.getElementsByClassName("musicName")[0],
+    oIphon = document.getElementsByClassName("iphone")[0],
+    oWrapper = document.getElementsByClassName("wrapper")[0];
 // 初始化
 var i = 0, W = oProbg.offsetWidth, H, timer, currentTime;
 var auto = true,
@@ -33,7 +34,27 @@ function init(){
     }
 }
 init();
-
+// 判断当前设备是PC还是移动端
+function IsPC() {
+    var userAgentInfo = navigator.userAgent;
+    var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"];
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+}
+// 如果是非PC端打开的显示提醒
+if(!IsPC()){
+    oIphon.style.display = "flex";
+    oWrapper.style.display = "none";
+    console.log("请在PC端打开")
+}
 // 上下首切换
 oPrev.onclick = function(){
     i--;

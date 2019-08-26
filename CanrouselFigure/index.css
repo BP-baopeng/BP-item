@@ -1,0 +1,90 @@
+body, ul, li, a{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.wrapper{
+    position: relative;
+    width: 520px;
+    height: 280px;
+    margin: 0 auto;
+    margin-top: 50px;
+    /* text-align: center; */
+    border: 10px #ccc solid;
+    font-size: 0;
+    overflow: hidden;
+
+}
+.imgBox{
+    position: absolute;
+    display: inline-block;
+    width: 3120px;
+
+}
+.imgBox li{
+    display: inline-block;
+}
+.imgBox img{
+    width: 520px;
+    height: 280px;
+}
+/* 按钮 */
+.btn{
+    display: none;
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    width: 520px;
+    text-align: center;
+}
+.btn a{
+    position: absolute;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0);
+    opacity: 0.4;
+    color: #ccc;
+    font-size: 20px;
+    line-height: 40px;
+}
+.btn a:hover{
+    opacity: 0.6;
+    color: #fff;
+}
+.btn .prev{
+    left: 0;
+}
+.btn .next{
+    right: 0; 
+
+}
+/* order */
+.order{
+    position: absolute;
+    left: 50%;
+    margin-left: -45px;
+    bottom: 20px;
+}
+
+.order ul{
+    background: rgba(0, 0, 0, 0.4);
+    padding: 4px 5px;
+    border-radius: 10px;
+}
+.order ul:hover{
+    background: rgba(0, 0, 0, 0.6);
+}
+.order .item{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 3px;
+    background: #fff;
+    cursor: pointer;
+}
+.order .active{
+    background: red;
+}

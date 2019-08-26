@@ -3,11 +3,18 @@ body, ul, li{
     padding: 0;
     list-style: none;
 }
+h1{
+    width: 100%;
+    text-align: center;
+    color: #2d78f4;
+    margin-top: 50px;
+    margin: 30px auto;
+}
 .wrapper{
     display: flex;
     max-width: 800px;
     height: 34px;
-    padding: 50px 20px;
+    padding: 0px 20px;
     padding-bottom: 0px;
     margin: auto auto;
 }
@@ -17,11 +24,11 @@ body, ul, li{
     display: block;
     overflow: hidden;
     padding: 6px 10px 5px;
-    padding-right: 110px;
     border: 1px solid #2d78f4;
 }
 .text{
     color: #ccc;
+    width: 100%;
     height: 23px;
     line-height: 23px;
     font-size: 16px;

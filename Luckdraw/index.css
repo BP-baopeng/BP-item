@@ -1,0 +1,17 @@
+table{
+    margin: auto;
+}
+td{
+    background-color: #666;
+    width: 150px;
+    height: 100px;
+    font-size: 50px;
+    text-align: center;
+}
+.selet{
+    background-color: #ff6600;
+}
+.start{
+    cursor: pointer;
+    background-color: #ff6600;
+}

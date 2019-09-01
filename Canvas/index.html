@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刮刮乐</title>
+    <style>
+    canvas{
+        border: 1px solid #000;
+        /* background-image: url(2.jpg); */
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500"></canvas>
+
+    <script>
+        var myCanvas = document.getElementsByTagName("canvas")[0];
+        var ctx = myCanvas.getContext('2d');
+        var w = myCanvas.width,
+            h = myCanvas.height;
+        var i = 0;
+        var lastPos = {};
+        // 初始化
+        function init(){
+            var img = new Image();
+            var random = Math.random();
+            if(random < 0.4){
+                img.src = "1.jpg";
+            }else{
+                img.src = "2.jpg";
+            }
+            
+
+            img.onload = function () {
+                myCanvas.style.backgroundImage = "url(" + img.src + ")";
+                // 鼠标按下
+                myCanvas.addEventListener("mousedown", downFun)
+            }
+            ctx.beginPath();
+            ctx.fillStyle = "#aaa";
+            ctx.fillRect(0, 0, w, h);
+            ctx.globalCompositeOperation = "destination-out";
+        }    
+        init();
+        // 鼠标按下
+        function downFun() {
+            lastPos.x = event.clientX - myCanvas.offsetLeft * 3/2;
+            lastPos.y = event.clientY - myCanvas.offsetTop * 3/2;
+            
+            ctx.beginPath();
+            ctx.arc(lastPos.x, lastPos.y, 20, 0, Math.PI*2);
+            ctx.fill();
+            myCanvas.addEventListener("mousemove", moveFun);
+            document.body.addEventListener("mouseup", upFun);
+        }
+        // 鼠标移动
+        function moveFun() {
+            var x = event.clientX - myCanvas.offsetLeft * 3/2;
+            var y = event.clientY - myCanvas.offsetTop * 3/2;
+
+            ctx.beginPath();
+            ctx.moveTo(lastPos.x, lastPos.y);
+            ctx.lineTo(x, y);
+            ctx.lineWidth = 40;
+            ctx.lineCap = "round";
+            ctx.stroke();
+
+            lastPos.x = x;
+            lastPos.y = y;
+        }
+        // 鼠标抬起
+        function upFun() {
+            myCanvas.removeEventListener("mousemove", moveFun);
+            document.body.removeEventListener("mouseup", upFun);
+            clearCover();
+        }
+        // 透明度大于60%，清除全部
+        function clearCover(){
+            var imageDate = ctx.getImageData(0, 0, w, h);
+            var sum = 0;
+            for(var i = 0; i < imageDate.data.length; i += 4){
+                if( imageDate.data[i] == 0){
+                    sum++;
+                }
+            }
+            if(sum > w*h*0.6){
+                ctx.clearRect(0, 0, w, h);
+            }
+        }
+    </script>
+</body>
+</html>

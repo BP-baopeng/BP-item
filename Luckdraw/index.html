@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>转盘抽奖</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <table id="table">
+        <tr>
+            <td class="selet">1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td id="prize"></td>
+            <td></td>
+            <td></td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td></td>
+            <td id="start" class="start">开始</td>
+            <td></td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>12</td>
+            <td>11</td>
+            <td>10</td>
+            <td>9</td>
+        </tr>
+    </table>
+    <script>
+    var tdList = document.getElementById("table").getElementsByTagName("td");
+    var start = document.getElementById("start");//开始按钮
+    var runNum;
+    var tdAry = [0,1,2,3,4,9,14,19,24,23,22,21,20,15,10,5]
+    var flag = true;
+
+    function playFunc(){
+        //把上次的取消选择
+        tdList[tdAry[tdID]].className = "";
+        tdID = tdID+1 >= tdAry.length ? 0 : tdID+1;
+        //把这次的加上选中
+        tdList[tdAry[tdID]].className = "selet";
+        runNum++;
+        //加速
+        if(runNum == 6){
+            clearInterval(run);
+            run = setInterval(playFunc,20);
+        }
+        //减速
+        if(runNum + 6 == maxNum){
+            clearInterval(run);
+            run = setInterval(playFunc,200);
+            
+        }
+        //结束
+        if(runNum == maxNum){
+            clearInterval(run);
+            //延迟执行
+            setTimeout(function(){
+                prize.innerText = tdList[tdAry[num]].innerText;
+                prize.className = "selet"
+                },500);
+            setTimeout(function(){
+                tdList[tdAry[num]].className = "";
+                start.innerText = "开始"
+                },500);
+                flag = true;
+            return;
+        }
+    }
+        //点击
+        start.onclick = function(){
+            if(flag == false) return;//当flag == false 直接跳出不执行
+            flag = false;
+            
+
+        //复位第一个td背景颜色
+        tdList[0].className="selet";
+        
+        //第二次之后奖品区复位
+        prize.innerText = "";
+        prize.className = "";
+        start.innerText = "抽奖中"
+        //跑多少圈
+        tdID = 0;
+        runNum = 0;
+        prize = document.getElementById("prize");
+        num = parseInt (Math.random()*16);//把任意值转化为0-16之间的整数
+        maxNum = 16*3 + num;//最大圈数
+        run = setInterval(playFunc,200);
+    }
+    
+    </script>
+</body>
+</html>

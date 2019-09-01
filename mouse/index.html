@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打地鼠</title>
+    <style>
+    #scene{
+        width: 750px;
+        height: 550px;
+        background: url("bg.png");
+        /* border: 1px solid #000; */
+        position: relative;
+    }
+    #hammer{
+        /* border: 1px solid #000; */
+        margin-top: -40px;
+        margin-left: -30px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: none;/* 隐藏鼠标 */
+        user-select: none;/* 不可选中 */
+        z-index: 9;
+        /* display: none; */
+    }
+    div[id^="hollow"]{
+        /* border: 1px solid #000; */
+        width: 102px;
+        height: 103px;
+        position: absolute;
+        overflow: hidden;
+    }
+    #hollow1{
+        top: 160px;
+        left: 140px;
+    }
+    #hollow2{
+        top: 160px;
+        left: 330px;
+    }
+    #hollow3{
+        top: 160px;
+        left: 530px;
+    }
+    #hollow4{
+        top: 250px;
+        left: 120px;
+    }
+    #hollow5{
+        top: 250px;
+        left: 335px;
+    }
+    #hollow6{
+        top: 250px;
+        left: 530px;
+    }
+    #hollow7{
+        top: 340px;
+        left: 110px;
+    }
+    #hollow8{
+        top: 350px;
+        left: 335px;
+    }
+    #hollow9{
+        top: 350px;
+        left: 550px;
+    }
+
+    div[id^="hollow"] img{
+        position: absolute;
+        top: 102px;
+        left: 0px;
+    }
+    #score{
+        /* border: 1px solid black; */
+        position: absolute;
+        top: 195px;
+        left: 275px;
+        width: 30px;
+        color: #1ed427
+    }
+    #time{
+        /* border: 1px solid black; */
+        position: absolute;
+        top: 195px;
+        left: 525px;
+        width: 80px;
+        color: #1ed427
+    }
+    #start{
+        /* border: 1px solid #000; */
+        width: 140px;
+        height: 60px;
+        position: absolute;
+        top: 320px;
+        left: 310px;
+        background-color: #1ed427;
+        text-align: center;
+        font-size: 20px;;
+        color: rgb(21, 51, 226);
+        display: block;
+        z-index: 9;
+    }
+    #over{
+        width: 250px;
+        height: 80px;
+        position: absolute;
+        top: 200px;
+        left: 255px;
+        background-color: #1ed427;
+        text-align: center;
+        font-size: 18px;
+        /* line-height: 20px; */
+        color: rgb(21, 51, 226);
+        display: none;
+        z-index: 8;
+    }
+    #but{
+        /* width: 150px;
+        height: 60px; */
+        position: absolute;
+        top: 320px;
+        left: 310px;
+        background-color: #1ed427;
+        text-align: center;
+        /* line-height: 100px; */
+        font-size: 20px;
+        color: rgb(21, 51, 226);        
+        display: none;
+        z-index: 9;
+    }
+    #but a{
+        text-decoration: none;
+        width: 140px;
+        height: 50px;
+        line-height: 50px;
+        display: block;
+
+    }
+    </style>
+</head>
+<body>
+    <div id="scene">
+        <img src="hammer1.png" alt="" id="hammer">
+        <div id="score">0</div>
+        <div id="time">0秒</div>
+        <button id="start">开始游戏</button>
+        <div id="over"></div>
+        <button id="but"><a href="">重新开始</a></button>
+        <div id="hollow1"><img src="mouse1.png" alt=""></div>
+        <div id="hollow2"><img src="mouse1.png" alt=""></div>
+        <div id="hollow3"><img src="mouse1.png" alt=""></div>
+        <div id="hollow4"><img src="mouse1.png" alt=""></div>
+        <div id="hollow5"><img src="mouse1.png" alt=""></div>
+        <div id="hollow6"><img src="mouse1.png" alt=""></div>
+        <div id="hollow7"><img src="mouse1.png" alt=""></div>
+        <div id="hollow8"><img src="mouse1.png" alt=""></div>
+        <div id="hollow9"><img src="mouse1.png" alt=""></div>
+    </div>
+
+    <script>
+        var scene = document.getElementById("scene");
+        var hammer = document.getElementById("hammer");
+        var score = document.getElementById("score")
+        var time = document.getElementById("time")
+        var Gamestart = document.getElementById("start");
+        var over = document.getElementById("over")
+
+        //点击按钮开始游戏
+        Gamestart.onclick = function (){
+            Gamestart.style.display = "none";
+            //点击按钮之后执行计时器
+            setInterval(function(){
+            //每次一只老鼠
+                if(mouseLoop == null){
+                    mouseID = parseInt(Math.random()*9);
+                    mouseAry[mouseID].src = "mouse1.png";
+                    nowTop = initTop;
+                    waitTime = 0;
+                    mouseLoop = setInterval(mouseShow,loopTime);
+                // console.log("开始")
+                }
+            },2000);
+        //倒计时
+        timer = setInterval(Time,1000);
+        } 
+
+        //鼠标点击锤子
+        scene.onmousedown = function (){
+            hammer.src = "hammer2.png"
+        }
+        scene.onmouseup = function (){
+            hammer.src = "hammer1.png"
+        }
+
+        //鼠标的位置
+        scene.onmousemove = function (e){
+            // console.log("x: " + e.clientX + "y: " + e.clientY);
+            var x = e.clientX;
+            var y = e.clientY;
+            hammer.style.top = y + "px";
+            hammer.style.left = x + "px";
+        }
+        var aa = 0;//分数
+        var AA = true;
+        scene.onclick = function(e){
+            var x = e.clientX;
+            var y = e.clientY;
+            //碰撞检测  鼠标位置  是不是在矩形之间
+            var x1 = mouseAry[mouseID].offsetLeft + hollowAry[mouseID].offsetLeft;
+            var x2 = x1 + mouseAry[mouseID].offsetWidth;
+
+            var y1 = mouseAry[mouseID].offsetTop + hollowAry[mouseID].offsetTop;
+            var y2 = hollowAry[mouseID].offsetTop + hollowAry[mouseID].offsetHeight;
+            
+            if(x > x1 && x < x2 && y > y1 && y < y2){
+                mouseAry[mouseID].src = "mouse2.png";
+                //每次点中aa+1
+                if(AA){
+                    score.innerText = ++aa;
+                }
+                AA = false;
+                console.log("点中了");
+            }
+        }
+        // var hollow1 = document.getElementById("hollow1");
+        // var mouse1 = hollow1.getElementsByTagName("img")[0];
+
+        var mouseID = parseInt(Math.random()*9);
+        var hollowAry = [];
+        var mouseAry = [];
+        for(var i = 0;i < 9;i++){
+            hollowAry[i] = document.getElementById("hollow" + (i + 1));
+            mouseAry[i] = hollowAry[i].getElementsByTagName("img")[0];
+        }
+        //每两秒，产生一个老鼠
+        var mouseLoop = null;
+        var loopTime = 20;
+        var initTop = 102;
+        var EndTop = 0;
+        var nowTop = initTop;
+        var waitTime = 0;//等待时间
+        var waitMaxTime = 900;//最大等待时间
+
+        // var time1 = setInterval(function(){
+        //     //每次一只老鼠
+        //     if(mouseLoop == null){
+        //         mouseID = parseInt(Math.random()*9);
+        //         mouseAry[mouseID].src = "mouse1.png";
+        //         nowTop = initTop;
+        //         waitTime = 0;
+        //         mouseLoop = setInterval(mouseShow,loopTime);
+        //         // console.log("开始")
+        //     }
+        // },2000);
+
+        // var mouseLoop = setInterval(mouseShow,loopTime);
+
+        // var Time1 = function (){
+            
+        // }
+        function mouseShow(){
+            if(nowTop > EndTop){
+                nowTop -= 4;
+            }
+            if(nowTop < EndTop){
+                nowTop = EndTop;
+            }
+            if(nowTop == EndTop){
+                if(waitTime < waitMaxTime){
+                    waitTime += loopTime;
+                    // console.log(waitTime)
+                }
+                if(waitTime >= waitMaxTime){
+                    nowTop = initTop;
+                    clearInterval(mouseLoop);
+                    mouseLoop = null;
+                    AA = true;
+                    // console.log("结束")
+                }
+            }
+            mouseAry[mouseID].style.top = nowTop + "px";
+        }
+
+        //倒计时
+         var maxtime = 30;
+        Time = function(){
+            if(maxtime >= 0){
+                seconds = Math.floor(maxtime % 60);
+                time.innerHTML = seconds + "秒";
+                maxtime--;
+            }else{
+                clearInterval(timer);
+                // confirm("游戏结束，恭喜你打破记录!!!" + "      " + "一共得了" + aa + "分!!!")
+                clearInterval(mouseLoop);
+                nowTop = 0;
+                score.innerText = 0;
+                over.style = "display:block"
+                over.innerText = "游戏结束，恭喜你打破记录!!!"+ "一共得了" + aa + "分!!!"
+                but.style.display="block";
+            }
+        }
+        // timer = setInterval(Time,1000);        
+    </script>
+</body>
+</html>

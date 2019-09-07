@@ -1,0 +1,42 @@
+body, div, a, span{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    user-select: none;
+}
+.wrapper{
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+.wrapper a,
+.wrapper span{
+    display: inline-block;
+    line-height: 40px;
+    color: #000;
+}
+.wrapper .item,
+.wrapper .omit,
+.wrapper .active{
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    border: 1px solid #000;
+}
+.wrapper .prev,
+.wrapper .next{
+    padding: 0 15px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+.wrapper .omit,
+.wrapper .active{
+    border: none;
+    font-weight: bold;
+}
+.wrapper .disabled{
+    border-color: #ccc;
+    color: #ccc;
+    cursor: not-allowed;
+}

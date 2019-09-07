@@ -1,0 +1,86 @@
+/* 初始化 */
+body,ul,li{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+/* 清理浮动 */
+.clearfix::after{
+    display: table;
+    content: "";
+    clear: both;
+}
+/* 一级标题 */
+.container{
+    width: 1200px;
+    margin: 20px auto;
+    border-top: 1px solid #808080;
+}
+.nav-list{
+    /* border: 1px solid black; */
+    background-color: #808080;
+    height:42px;
+    position: relative;
+}
+.nav-list > li{
+    float: left;
+    margin: 0 20px;
+}
+.nav-list > li >a{
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    line-height: 42px;
+    padding: 0 12px;
+    position: relative;
+}
+.nav-list > li >a:hover{
+    color: #bc0303;
+    background-color: #fff;
+}
+/* 二级标题 */
+.item{
+    width: 180px;
+    border: 1px solid #c9c9c9;
+    border-top: none;
+    position: absolute;
+    display: none;
+}
+
+.item .item-list >li >a{
+    width: 180px;
+    color: #616161;
+    font-size: 16px;
+    line-height: 42px;
+    padding: 0 12px;
+}
+.item .item-list >li >a:hover{
+    text-decoration: underline;
+}
+
+/* 控制显示二级菜单 */
+.nav-list .show .item{
+    display: block;
+}
+.nav-list > .show > a{
+    background-color: #fff;
+    color: #bc0303;
+}
+/* 控制二级菜单宽度 */
+.height > .item-list:after{
+    display: table;
+    content: "";
+    clear: both;
+}
+.height{
+    width: 360px;
+}
+.height > .item-list > li{
+    width: 180px;
+    float: left;
+}
